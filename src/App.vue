@@ -1,0 +1,25 @@
+<template>
+  <div id="app">
+    <router-view/>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'app'
+  }
+</script>
+
+<style>
+  @import "style/reset.scss";
+
+  #app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #333;
+    min-height: 100%;
+    background: rgba(51, 51, 51, .9);
+  }
+</style>
