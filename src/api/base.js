@@ -14,6 +14,9 @@ export function handleResult (resp) {
   if (body) {
     const { code, message, result } = body
     switch (code) {
+      case 0:
+        this.emptyResult = true
+        break
       case 200:
         console.log(result, 'success')
         break

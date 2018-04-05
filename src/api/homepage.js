@@ -1,9 +1,9 @@
 import base from './base'
 
-export function getHomepageList (options) {
+export function getHomepageList (params) {
   return base({
     context: this,
     url: '/media',
-    options
+    params
   })
 }

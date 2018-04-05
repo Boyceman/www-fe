@@ -19,7 +19,7 @@ Vue.http.interceptors.push((request, next) => {
 })
 
 Vue.use(progressive, {
-  removePreview: true,
+  removePreview: false,
   scale: true
 })
 

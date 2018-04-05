@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="waterfall" @scroll="handleScroll">
     <progressive-image v-for="(image, idx) in images" :key="idx" :image="image"></progressive-image>
   </div>
 </template>
@@ -21,26 +21,43 @@
       return {
         pageNum: 1,
         pageSize: 10,
-        images: []
+        images: [],
+        BUFFER: 500
       }
     },
     beforeMount () {
-      const { pageNum, pageSize } = this
-      getHomepageList.bind(this)({ pageNum, pageSize }).then(({ code, result }) => {
-        if (code === 200) {
-          result.forEach(item => {
-            this.images.unshift({ src: item.media, preview: item.preview })
-          })
-        }
-      })
+      this.fetchData()
     },
-    methods: {}
+    methods: {
+      fetchData () {
+        const { pageNum, pageSize } = this
+        getHomepageList.bind(this)({ pageNum, pageSize }).then(({ code, result }) => {
+          if (code === 200) {
+            result.forEach(item => {
+              this.images.push({ src: item.media, preview: item.preview })
+            })
+          }
+        })
+      },
+      handleScroll (e) {
+        const { scrollTop, scrollHeight, clientHeight } = e.target
+        if (this.emptyResult) {
+          // todo add empty notification
+        } else {
+          if (scrollTop > scrollHeight - clientHeight - this.BUFFER) {
+            this.pageNum += 1
+            this.fetchData()
+          }
+        }
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
-  .hello {
-    overflow: hidden;
+  .waterfall {
+    height: 100%;
+    overflow: auto;
     .inner {
       float: left;
       width: 100%;
