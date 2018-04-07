@@ -1,4 +1,4 @@
-/* 请勿手动修改，此文件为npm run route生成 */
+/* 请勿手动修改，此文件为npm start生成 */
 
 import combineRoutes from './combineRoutes'
 import Homepage from '../Homepage'

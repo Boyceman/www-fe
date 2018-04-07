@@ -5,6 +5,7 @@
   "author": "boyce <boyce51532853@gmail.com>",
   "private": true,
   "scripts": {
+    "element": "node build/element.js",
     "route": "node build/indexRoutes.js",
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
@@ -21,6 +22,7 @@
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.1",
+    "babel-plugin-component": "^1.1.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
@@ -29,6 +31,7 @@
     "connect-history-api-fallback": "^1.3.0",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "element-ui": "^2.3.3",
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
