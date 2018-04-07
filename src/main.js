@@ -15,6 +15,7 @@ Vue.use(resource)
 
 Vue.http.interceptors.push((request, next) => {
   request.headers.set('authorization', getDataFromLs('token'))
+  request.headers.set('Content-Type', 'application/x-www-form-urlencoded')
   next()
 })
 

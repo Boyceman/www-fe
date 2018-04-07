@@ -1,4 +1,4 @@
-export default (fn, delay = 200) => {
+export default (fn, delay = 300) => {
   var now, lastExec, timer, context, args
 
   var handle = function () {

@@ -6,6 +6,7 @@
 
 <script>
   import { getHomepageList } from '../api/homepage'
+  import throttle from '../utils/throttle'
 
   export default {
     name: 'Homepage',
@@ -39,8 +40,8 @@
           }
         })
       },
-      handleScroll (e) {
-        const { scrollTop, scrollHeight, clientHeight } = e.target
+      handleScroll: throttle(function () {
+        const { scrollTop, scrollHeight, clientHeight } = this.$el
         if (this.emptyResult) {
           // todo add empty notification
         } else {
@@ -49,7 +50,7 @@
             this.fetchData()
           }
         }
-      }
+      })
     }
   }
 </script>

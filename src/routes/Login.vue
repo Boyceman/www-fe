@@ -1,5 +1,6 @@
 <template>
   <div class="Login">
+    Login Success
   </div>
 </template>
 
@@ -23,6 +24,7 @@
       const { email, password } = this
       login({ email, password }).then(({ result: { token } }) => {
         this.$utils.putDataIntoLs({ token })
+        this.$router.replace('/')
       })
     },
     methods: {}
@@ -31,5 +33,9 @@
 
 <style scoped lang="scss">
   .Login {
+    font-size: 36px;
+    color: #fefefe;
+    text-align: center;
+    line-height: 100vh;
   }
 </style>
