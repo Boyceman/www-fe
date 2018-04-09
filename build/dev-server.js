@@ -12,8 +12,6 @@ const express = require('express')
 const webpack = require('webpack')
 const proxyMiddleware = require('http-proxy-middleware')
 const webpackConfig = require('./webpack.dev.conf')
-const element = require('./element')
-const routes = require('./indexRoutes')
 
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || config.dev.port
@@ -49,9 +47,6 @@ const hotMiddleware = require('webpack-hot-middleware')(compiler, {
 // enable hot-reload and state-preserving
 // compilation error display
 app.use(hotMiddleware)
-
-app.use(routes)
-app.use(element)
 
 // proxy api requests
 Object.keys(proxyTable).forEach(function (context) {

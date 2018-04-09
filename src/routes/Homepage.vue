@@ -13,7 +13,7 @@
     _router: {
       path: '/',
       name: 'Homepage',
-      component: resolve => require.ensure([], () => resolve(require('./Homepage.vue')), 'Homepage')
+      component: resolve => require.ensure([], () => resolve(require('./Homepage')), 'Homepage')
     },
     components: {
       'ProgressiveImage': () => import('../components/ProgressiveImage')

@@ -1,19 +1,19 @@
 <template>
-  <div class="Login">
+  <div class="Register">
     {{info}}
   </div>
 </template>
 
 <script>
-  // todo add login page
-  import { login } from '../api/user'
+  // todo add register page
+  import { register } from '../api/user'
 
   export default {
-    name: 'Login',
+    name: 'Register',
     _router: {
-      path: '/user/login',
-      name: 'Login',
-      component: resolve => require.ensure([], () => resolve(require('./Login')), 'Login')
+      path: '/user/register',
+      name: 'Register',
+      component: resolve => require.ensure([], () => resolve(require('./Register')), 'Register')
     },
     data () {
       return {
@@ -24,14 +24,12 @@
     },
     beforeMount () {
       const { email, password } = this
-      login({ email, password }).then(({ code, result }) => {
+      register({ email, password }).then(({ code, result }) => {
         if (code === 200) {
-          this.info = 'Login Success'
+          this.info = 'Register Success'
           const { token } = result
           this.$utils.putDataIntoSs({ token })
           this.$router.replace('/')
-        } else {
-          this.$router.replace('/user/register')
         }
       })
     },
@@ -40,7 +38,7 @@
 </script>
 
 <style scoped lang="scss">
-  .Login {
+  .Register {
     font-size: 36px;
     color: #fefefe;
     text-align: center;

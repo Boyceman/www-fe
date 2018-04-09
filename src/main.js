@@ -6,7 +6,7 @@ import App from './App'
 import utils from './utils'
 import router from './routes/router'
 import resource from 'vue-resource'
-import { getDataFromLs } from './utils/localstorage'
+import { getDataFromSs } from './utils/sessionStorage'
 import progressive from 'progressive-image/dist/vue'
 
 Vue.config.productionTip = false
@@ -14,8 +14,7 @@ Vue.config.productionTip = false
 Vue.use(resource)
 
 Vue.http.interceptors.push((request, next) => {
-  request.headers.set('authorization', getDataFromLs('token'))
-  request.headers.set('Content-Type', 'application/x-www-form-urlencoded')
+  request.headers.set('Token', getDataFromSs('token'))
   next()
 })
 

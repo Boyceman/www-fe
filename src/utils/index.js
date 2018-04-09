@@ -1,8 +1,8 @@
 import throttle from './throttle'
-import { getDataFromLs, putDataIntoLs } from './localstorage'
+import { getDataFromSs, putDataIntoSs } from './sessionStorage'
 
 export default {
   throttle,
-  getDataFromLs,
-  putDataIntoLs
+  getDataFromSs,
+  putDataIntoSs
 }

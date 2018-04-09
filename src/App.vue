@@ -20,6 +20,5 @@
     text-align: center;
     color: #333;
     min-height: 100%;
-    background: rgba(51, 51, 51, .9);
   }
 </style>

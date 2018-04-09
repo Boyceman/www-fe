@@ -1,4 +1,4 @@
-/* 请勿手动修改，此文件为npm start生成 */
+/* 请勿手动修改，此文件为npm run element生成 */
 
 import Vue from 'vue'
 import {
