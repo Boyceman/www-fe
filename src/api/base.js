@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-const baseUrl = 'http://127.0.0.1:5000/api/v1'
+const baseUrl = 'http://localhost:5000/api/v1'
 
 export default ({ type = 'get', url = '/', params = {}, context, options = {} }) => {
   const body = type === 'get' || type === 'delete' ? { params } : params
@@ -31,6 +31,6 @@ export function handleResult (resp) {
 }
 
 export function handleNetErr (err) {
-  console.log(err, 8888)
+  console.log(err)
   return err
 }

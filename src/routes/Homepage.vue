@@ -1,6 +1,6 @@
 <template>
   <div class="waterfall" @scroll="handleScroll">
-    <progressive-image v-for="(image, idx) in images" :key="idx" :image="image"></progressive-image>
+    <progressive-image v-for="(image, idx) in images" :key="idx" :image="image"/>
   </div>
 </template>
 
@@ -18,6 +18,7 @@
     components: {
       'ProgressiveImage': () => import('../components/ProgressiveImage')
     },
+    props: ['copy'],
     data () {
       return {
         pageNum: 1,
@@ -37,6 +38,7 @@
             result.forEach(item => {
               this.images.push({ src: item.media, preview: item.preview })
             })
+            this.copy()
           }
         })
       },
