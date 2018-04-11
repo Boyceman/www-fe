@@ -3,12 +3,13 @@
     <div class="nav-item" v-for="(item, idx) in items" :key="idx" @click="handleClick(idx)">
       <icon :active="idx === 0 || idx === activeIdx" :name="item.name"/>
     </div>
-    <slot/>
+    <div class="fake-dom" ref="fakeDom" v-html="fakeDom"></div>
   </div>
 </template>
 
 <script>
   import Icon from './Icon'
+  import { mapState } from 'vuex'
 
   export default {
     name: 'NavBar',
@@ -35,6 +36,11 @@
         ]
       }
     },
+    computed: {
+      ...mapState({
+        'fakeDom': state => state.current.fakeDom
+      })
+    },
     methods: {
       handleClick (idx) {
         this.activeIdx = idx
@@ -49,10 +55,10 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
-    display: flex;
+    height: 12vw;
     overflow: hidden;
-    background: transparent;
+    display: flex;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, .7);
     .nav-item {
       flex: 1;
       height: 12vw;
@@ -61,14 +67,11 @@
         background: #fefefe;
       }
     }
-    &:before {
-      content: '';
+    > div:last-child {
       position: absolute;
+      width: 100%;
       left: 0;
       top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, .7);
       z-index: -1;
     }
   }

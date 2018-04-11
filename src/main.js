@@ -3,6 +3,7 @@
 import 'lib-flexible'
 import Vue from 'vue'
 import App from './App'
+import store from './store'
 import utils from './utils'
 import router from './routes/router'
 import resource from 'vue-resource'
@@ -33,6 +34,7 @@ Vue.mixin({
 new Vue({
   el: '#app',
   router,
+  store,
   utils,
   template: '<App/>',
   components: { App }

@@ -1,12 +1,14 @@
 <template>
-  <div class="waterfall" @scroll="handleScroll">
+  <div class="waterfall" ref="waterfall" @scroll="handleScroll">
     <progressive-image v-for="(image, idx) in images" :key="idx" :image="image"/>
   </div>
 </template>
 
 <script>
   import { getHomepageList } from '../api/homepage'
-  import throttle from '../utils/throttle'
+  // import throttle from '../utils/throttle'
+  import Vue from 'vue'
+  import { mapMutations } from 'vuex'
 
   export default {
     name: 'Homepage',
@@ -18,7 +20,6 @@
     components: {
       'ProgressiveImage': () => import('../components/ProgressiveImage')
     },
-    props: ['copy'],
     data () {
       return {
         pageNum: 1,
@@ -30,6 +31,16 @@
     beforeMount () {
       this.fetchData()
     },
+    updated () {
+      Vue.nextTick(() => {
+        if (this.$refs.waterfall.childNodes.length) {
+          const copy = this.$refs.waterfall.cloneNode(true)
+          copy.className = 'copy-body'
+          this.currentFakeDom({ fakeDom: copy.innerHTML })
+        }
+      }, this)
+      this.handleScroll()
+    },
     methods: {
       fetchData () {
         const { pageNum, pageSize } = this
@@ -38,12 +49,12 @@
             result.forEach(item => {
               this.images.push({ src: item.media, preview: item.preview })
             })
-            this.copy()
           }
         })
       },
-      handleScroll: throttle(function () {
+      handleScroll: function () {
         const { scrollTop, scrollHeight, clientHeight } = this.$el
+        this.blurScroll()
         if (this.emptyResult) {
           // todo add empty notification
         } else {
@@ -52,7 +63,13 @@
             this.fetchData()
           }
         }
-      })
+      },
+      blurScroll () {
+        const fakeDom = this.$vnode.context.$children[0].$refs.fakeDom
+        fakeDom.style['transform'] = `translate3d(0,${-this.$el.scrollTop - window.innerHeight +
+        window.innerWidth * 0.12}px,0)`
+      },
+      ...mapMutations(['currentFakeDom'])
     }
   }
 </script>
